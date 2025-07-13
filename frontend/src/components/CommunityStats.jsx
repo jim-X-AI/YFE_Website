@@ -1,4 +1,4 @@
-import { Users, Briefcase, Code } from 'lucide-react';
+import { Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const StatCard = ({ icon, value, label, delay }) => (
@@ -7,7 +7,7 @@ const StatCard = ({ icon, value, label, delay }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay }}
     viewport={{ once: true }}
-    className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/20 dark:border-white/10 text-center"
+    className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/20 dark:border-white/10 text-center max-w-sm w-full"
   >
     <div className="flex justify-center mb-4">
       <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full">
@@ -38,24 +38,13 @@ export default function CommunityStats() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto" />
         </motion.div>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Centered single stat */}
+        <div className="flex justify-center">
           <StatCard
             icon={<Users className="w-6 h-6 text-white" />}
             value="150+"
             label="Members"
             delay={0.2}
-          />
-          <StatCard
-            icon={<Briefcase className="w-6 h-6 text-white" />}
-            value="12+"
-            label="Partner Companies"
-            delay={0.3}
-          />
-          <StatCard
-            icon={<Code className="w-6 h-6 text-white" />}
-            value="30+"
-            label="Open Source Projects"
-            delay={0.4}
           />
         </div>
       </div>

@@ -7,11 +7,11 @@ export default function Hero() {
   const { content } = useContent();
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4 sm:px-6">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-visible px-4 sm:px-6">
       <Particles />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto w-full">
+      <div className="relative z-10 text-center max-w-4xl mx-auto w-full overflow-visible">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6 sm:mb-8 leading-tight"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6 sm:mb-8 leading-[1.2]"
         >
           {content?.vision?.title || "Shaping Tomorrow's Digital Frontier"}
         </motion.h1>
