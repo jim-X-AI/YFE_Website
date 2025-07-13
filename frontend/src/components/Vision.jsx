@@ -36,8 +36,8 @@ export default function Vision() {
                 <h3 className="text-2xl font-bold text-gray-800">Community First</h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                We believe in the power of collective intelligence. Our community brings together
-                diverse perspectives to solve complex problems and create groundbreaking solutions.
+                Fostering a dynamic environment where young professionals can connect, collaborate, and cultivate
+                essential skills, gaining the expertise and confidence to thrive in their careers and capitalize on global opportunities.
               </p>
               <div className="mt-6">
                 <FuturisticButton className="text-sm">
@@ -63,8 +63,8 @@ export default function Vision() {
                 <h3 className="text-2xl font-bold text-gray-800">Future-Focused</h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                We're not just keeping up with technology - we're shaping its future. Our members
-                work at the cutting edge of AI, Web3, and other transformative technologies.
+                To empower young professionals for global success, bridging the gap between talent and opportunity, and unlocking their potential in the ever-evolving labor market.
+
               </p>
               <div className="mt-6">
                 <FuturisticButton className="text-sm">
