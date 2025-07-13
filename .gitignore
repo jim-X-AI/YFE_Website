@@ -1,0 +1,30 @@
+# Node
+node_modules/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+.venv/
+
+# OS & editor
+.DS_Store
+*.log
+.env
+*.sqlite3
+
+# Virtual environments
+backend/venv/
+backend/env/
+
+# Netlify & Vercel build artifacts
+.netlify/
+.vercel/
+
+# PythonAnywhere
+*.sqlite3
+instance/
