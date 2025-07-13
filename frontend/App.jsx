@@ -10,7 +10,7 @@ const TuesdayChats = lazy(() => import('./src/components/TuesdayChats'));
 const FridayBanters = lazy(() => import('./src/components/FridayBanters'));
 const ResourceHub = lazy(() => import('./src/components/ResourceHub'));
 const CommunityStats = lazy(() => import('./src/components/CommunityStats'));
-// const FeaturedMembers = lazy(() => import('./src/components/FeaturedMembers'));
+const FeaturedMembers = lazy(() => import('./src/components/FeaturedMembers'));
 const Footer = lazy(() => import('./src/components/Footer'));
 
 function AppContent() {
@@ -20,14 +20,14 @@ function AppContent() {
   if (error) return <ErrorMessage message={error} onRetry={refetch} />;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
       <Hero />
       <Vision />
       <CommunityStats stats={content?.community?.stats} />
       <TuesdayChats />
       <FridayBanters />
-      {/* <FeaturedMembers members={content?.community?.featured_members} /> */}
       <ResourceHub />
+      <FeaturedMembers members={content?.community?.featured_members} />
       <Footer />
     </div>
   );

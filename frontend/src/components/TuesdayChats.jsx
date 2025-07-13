@@ -1,4 +1,4 @@
-import { Calendar, MessageCircle, ExternalLink } from 'lucide-react';
+import { Coffee, MessageCircle, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useContent } from '../context/ContentContext';
 
@@ -12,7 +12,7 @@ export default function TuesdayChats() {
   const whatsappLink = content?.tuesday?.whatsapp_link || '#';
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-r from-blue-100 to-purple-100">
+    <section className="py-20 px-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -21,16 +21,16 @@ export default function TuesdayChats() {
           viewport={{ once: true }}
           className="relative"
         >
-          <div className="absolute -inset-8 bg-gradient-to-r from-blue-200 to-purple-200 rounded-3xl blur opacity-20" />
-          <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-white/30">
+          <div className="absolute -inset-8 bg-gradient-to-r from-blue-200 to-purple-200 dark:from-blue-900 dark:to-purple-800 rounded-3xl blur opacity-20" />
+          <div className="relative bg-white/80 dark:bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-white/30 dark:border-white/10">
             <div className="flex flex-col items-center text-center">
-              <div className="p-4 bg-blue-100 rounded-full mb-6">
-                <Calendar className="w-8 h-8 text-blue-600" />
+              <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-full mb-6">
+                <Coffee className="w-8 h-8 text-blue-600 dark:text-blue-300" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
                 {title}
               </h2>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed max-w-2xl">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-2xl">
                 {description}
               </p>
               <a

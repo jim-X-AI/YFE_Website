@@ -1,4 +1,4 @@
-import plugin from 'tailwindcss/plugin'
+import plugin from 'tailwindcss/plugin';
 
 export default {
   content: [
@@ -7,6 +7,7 @@ export default {
     "./main.jsx",
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
+  darkMode: 'class', // Enable class-based dark mode
   theme: {
     extend: {},
   },
@@ -19,6 +20,10 @@ export default {
           background: 'rgba(255, 255, 255, 0.1)',
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
+        },
+        '.dark .holographic-card': {
+          background: 'rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
         },
         '.holographic-card::before': {
           content: '""',

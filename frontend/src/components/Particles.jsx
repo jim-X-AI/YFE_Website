@@ -8,19 +8,26 @@ export default function Particles() {
     const ctx = canvas.getContext('2d');
     let particles = [];
 
-    // Set canvas size
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Scale for retina displays
+    const setCanvasSize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
 
-    // Create particles
+    setCanvasSize();
+
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 - 1;
-        this.color = `hsl(${Math.random() * 60 + 200}, 70%, 60%)`;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 1.5 - 0.75;
+        this.speedY = Math.random() * 1.5 - 0.75;
+        this.color = `hsl(${Math.random() * 40 + 220}, 80%, 70%)`; // bluish glow
       }
 
       update() {
@@ -32,18 +39,15 @@ export default function Particles() {
       }
 
       draw() {
-        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Glow effect
-        ctx.shadowBlur = 15;
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 20;
         ctx.shadowColor = this.color;
+        ctx.fill();
       }
     }
 
-    // Initialize particles
     function init() {
       particles = [];
       for (let i = 0; i < 80; i++) {
@@ -51,30 +55,28 @@ export default function Particles() {
       }
     }
 
-    // Animation loop
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+      particles.forEach((p, i) => {
+        p.update();
+        p.draw();
 
-        // Connect particles
-        for (let j = i; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = p.x - particles[j].x;
+          const dy = p.y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 100) {
-            ctx.strokeStyle = `rgba(150, 120, 255, ${1 - distance/100})`;
-            ctx.lineWidth = 0.5;
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(140, 160, 255, ${1 - distance / 100})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
-      }
+      });
 
       requestAnimationFrame(animate);
     }
@@ -82,23 +84,19 @@ export default function Particles() {
     init();
     animate();
 
-    // Handle resize
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      setCanvasSize();
+      init(); // Reinitialize to avoid stretched particles
     };
 
     window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
     />
   );
 }
