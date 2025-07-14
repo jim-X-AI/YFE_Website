@@ -25,21 +25,14 @@ export default function Footer() {
 
           <div className="flex gap-4">
             <a
-              href="#"
-              aria-label="Twitter"
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 dark:bg-white/10 dark:hover:bg-white/20 transition"
-            >
-              <Twitter className="w-5 h-5 text-white" />
-            </a>
-            <a
-              href="#"
+              href="https://github.com/YourFavouriteEngineer"
               aria-label="GitHub"
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 dark:bg-white/10 dark:hover:bg-white/20 transition"
             >
               <Github className="w-5 h-5 text-white" />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/your-favourite-engineer/ "
               aria-label="LinkedIn"
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 dark:bg-white/10 dark:hover:bg-white/20 transition"
             >
