@@ -1,0 +1,257 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ExternalLink, Moon, Sun, Sparkles } from 'lucide-react';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
+  const [scrolled, setScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const navItems = [
+    { name: 'Home', href: '/' },          // Route
+    { name: 'About', href: '/about' },    // Route
+    { name: 'Vision', href: 'vision' },   // Section
+    { name: 'Tuesday Chats', href: 'tuesday' },
+    { name: 'Friday Banters', href: 'friday' },
+    { name: 'Resource Hub', href: 'resources' },
+    { name: 'Contact', href: 'contact' },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Highlight active section while scrolling
+      const sections = navItems.filter(item => !item.href.startsWith('/')).map(item => item.href);
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle both routes & scroll-to-section
+  const scrollToSection = (sectionId) => {
+    if (sectionId.startsWith('/')) {
+      // Route navigation
+      window.location.href = sectionId;
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle('dark');
+  };
+
+  const joinCommunity = () => {
+    window.open('https://chat.whatsapp.com/community', '_blank');
+  };
+
+  // Desktop Nav Item
+  const DesktopNavItem = ({ item }) => (
+    <motion.button
+      onClick={() => scrollToSection(item.href)}
+      className="relative px-4 py-2 text-sm font-medium transition-all duration-300"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <span
+        className={`relative z-10 ${
+          activeSection === item.href
+            ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold'
+            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+        }`}
+      >
+        {item.name}
+      </span>
+      {activeSection === item.href && (
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"
+          layoutId="activeIndicator"
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        />
+      )}
+    </motion.button>
+  );
+
+  // Mobile Nav Item
+  const MobileNavItem = ({ item, index }) => (
+    <motion.button
+      onClick={() => scrollToSection(item.href)}
+      className="relative py-4 text-xl font-medium text-center w-full"
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <span
+        className={`relative z-10 ${
+          activeSection === item.href
+            ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'
+            : 'text-white'
+        }`}
+      >
+        {item.name}
+      </span>
+      {activeSection === item.href && (
+        <motion.div
+          className="absolute left-1/2 bottom-2 w-16 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transform -translate-x-1/2"
+          layoutId="mobileActiveIndicator"
+        />
+      )}
+    </motion.button>
+  );
+
+  return (
+    <>
+      {/* Desktop Navbar */}
+      <motion.nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/20 shadow-2xl'
+            : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <motion.div
+              className="flex items-center space-x-3"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur opacity-30 animate-pulse" />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Visionary
+              </span>
+            </motion.div>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map((item) => (
+                <DesktopNavItem key={item.href} item={item} />
+              ))}
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center space-x-4">
+              {/* Dark Mode */}
+              <motion.button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/20"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {darkMode ? (
+                  <Sun className="w-5 h-5 text-yellow-500" />
+                ) : (
+                  <Moon className="w-5 h-5 text-gray-600" />
+                )}
+              </motion.button>
+
+              {/* Join Community */}
+              <motion.button
+                onClick={joinCommunity}
+                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Join Community</span>
+                <ExternalLink className="w-4 h-4" />
+              </motion.button>
+
+              {/* Mobile Menu */}
+              <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                className="md:hidden p-2 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/20"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {isOpen ? (
+                  <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                ) : (
+                  <Menu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                )}
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              className="fixed top-0 right-0 z-50 w-80 h-full bg-gradient-to-br from-gray-900 to-purple-900 md:hidden"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            >
+              <div className="flex flex-col h-full pt-20 pb-8 px-6">
+                <motion.button
+                  onClick={() => setIsOpen(false)}
+                  className="absolute top-6 right-6 p-2 text-white/70 hover:text-white"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.button>
+                <div className="flex-1 space-y-2">
+                  {navItems.map((item, index) => (
+                    <MobileNavItem key={item.href} item={item} index={index} />
+                  ))}
+                </div>
+                <motion.button
+                  onClick={joinCommunity}
+                  className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold shadow-2xl flex items-center justify-center space-x-2 mt-8"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span>Join Community</span>
+                  <ExternalLink className="w-5 h-5" />
+                </motion.button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default Navbar;
