@@ -28,3 +28,6 @@ backend/env/
 # PythonAnywhere
 *.sqlite3
 instance/
+
+*.client_secret.json
+*.token.json

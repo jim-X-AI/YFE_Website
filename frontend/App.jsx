@@ -5,7 +5,7 @@ import Navbar from './src/components/Navbar';
 import LoadingSpinner from './src/components/LoadingSpinner';
 import ErrorMessage from './src/components/ErrorMessage';
 
-// Import all components used in HomePage
+
 import Hero from './src/components/Hero';
 import Vision from './src/components/Vision';
 import TuesdayChats from './src/components/TuesdayChats';
@@ -16,8 +16,8 @@ import FeaturedMembers from './src/components/FeaturedMembers';
 import Footer from './src/components/Footer';
 
 // Lazy load pages
-const Home = lazy(() => import('./src/pages/Home'));
 const About = lazy(() => import('./src/pages/About'));
+const Resources = lazy(() => import('./src/pages/Resources'));
 
 // Home page component
 function HomePage() {
@@ -59,6 +59,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<About />} />
+              <Route path="/resources" element={<Resources />} />
             </Routes>
           </Suspense>
         </div>

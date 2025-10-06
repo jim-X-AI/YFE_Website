@@ -10,9 +10,12 @@
     "framer-motion": "^12.23.3",
     "lucide-react": "^0.266.0",
     "react": "^18.0.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.0.0",
     "react-intersection-observer": "^9.16.0",
-    "react-router-dom": "^7.9.3"
+    "react-router-dom": "^7.9.3",
+    "react-virtualized-auto-sizer": "^1.0.26",
+    "react-window": "^2.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",

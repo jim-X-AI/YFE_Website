@@ -1,57 +1,38 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ExternalLink, Moon, Sun, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
-    { name: 'Home', href: '/' },          // Route
-    { name: 'About', href: '/about' },    // Route
-    { name: 'Vision', href: 'vision' },   // Section
-    { name: 'Tuesday Chats', href: 'tuesday' },
-    { name: 'Friday Banters', href: 'friday' },
-    { name: 'Resource Hub', href: 'resources' },
-    { name: 'Contact', href: 'contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Resource Hub', href: '/resources' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-
-      // Highlight active section while scrolling
-      const sections = navItems.filter(item => !item.href.startsWith('/')).map(item => item.href);
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-
-      if (current) setActiveSection(current);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle both routes & scroll-to-section
   const scrollToSection = (sectionId) => {
     if (sectionId.startsWith('/')) {
-      // Route navigation
-      window.location.href = sectionId;
-      return;
-    }
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
+      navigate(sectionId);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsOpen(false);
+      }
     }
   };
 
@@ -61,10 +42,9 @@ const Navbar = () => {
   };
 
   const joinCommunity = () => {
-    window.open('https://chat.whatsapp.com/community', '_blank');
+    window.open('https://forms.gle/w6Bnr1sj5ypsA5je9', '_blank');
   };
 
-  // Desktop Nav Item
   const DesktopNavItem = ({ item }) => (
     <motion.button
       onClick={() => scrollToSection(item.href)}
@@ -81,17 +61,9 @@ const Navbar = () => {
       >
         {item.name}
       </span>
-      {activeSection === item.href && (
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"
-          layoutId="activeIndicator"
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        />
-      )}
     </motion.button>
   );
 
-  // Mobile Nav Item
   const MobileNavItem = ({ item, index }) => (
     <motion.button
       onClick={() => scrollToSection(item.href)}
@@ -102,21 +74,7 @@ const Navbar = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <span
-        className={`relative z-10 ${
-          activeSection === item.href
-            ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'
-            : 'text-white'
-        }`}
-      >
-        {item.name}
-      </span>
-      {activeSection === item.href && (
-        <motion.div
-          className="absolute left-1/2 bottom-2 w-16 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transform -translate-x-1/2"
-          layoutId="mobileActiveIndicator"
-        />
-      )}
+      <span className="relative z-10 text-white">{item.name}</span>
     </motion.button>
   );
 
@@ -137,7 +95,8 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.div
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={() => navigate('/')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
