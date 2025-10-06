@@ -31,3 +31,5 @@ instance/
 
 *.client_secret.json
 *.token.json
+token.json
+client_secret.json
