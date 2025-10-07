@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, FileText, Video, Image, File, Folder,
-  ExternalLink, Sparkles, LayoutGrid, List, X
+  ExternalLink, LayoutGrid, List, X
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -12,7 +12,6 @@ const Resources = () => {
   const [filteredResources, setFilteredResources] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('all');
-  const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState('grid');
 
   const fileTypes = [
@@ -26,13 +25,10 @@ const Resources = () => {
 
   useEffect(() => {
     const fetchResources = async () => {
-      setLoading(true);
-      // Fetch resources from local JSON
       try {
         const response = await fetch('/resources.json');
         const data = await response.json();
 
-        // Map the Drive API data to our structure
         const mapped = data.files.map(file => ({
           id: file.id,
           title: file.name,
@@ -49,6 +45,7 @@ const Resources = () => {
             : 'file',
           description: file.description || '',
           link: file.webViewLink || file.webContentLink,
+          thumbnail: file.thumbnailLink || file.iconLink || '', // handles images
           size: file.size ? `${(file.size / 1024).toFixed(1)} KB` : '',
           date: file.modifiedTime || file.createdTime
         }));
@@ -58,7 +55,6 @@ const Resources = () => {
       } catch (err) {
         console.error('Failed to fetch resources:', err);
       }
-      setLoading(false);
     };
     fetchResources();
   }, []);
@@ -97,45 +93,31 @@ const Resources = () => {
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
   const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } } };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="relative">
-            <div className="w-16 h-16 border-4 border-blue-600 border-t-blue-400 rounded-full animate-spin"></div>
-            <div className="absolute inset-0 w-16 h-16 border-4 border-purple-600 border-b-purple-400 rounded-full animate-spin animate-reverse"></div>
-            <Sparkles className="absolute inset-0 m-auto w-6 h-6 text-blue-500 animate-pulse" />
-          </div>
-          <p className="mt-4 text-lg text-gray-300">Loading Knowledge Vault...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
-      {/* Glow Backgrounds */}
-      <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-purple-600/20 rounded-full blur-[160px] animate-pulse" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[160px] animate-pulse delay-1000" />
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white relative overflow-hidden">
+      {/* Subtle ambient glows */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-700/20 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-700/20 rounded-full blur-[120px]" />
 
       <Navbar darkMode />
 
       {/* Header */}
-      <motion.section className="px-6 py-16 text-center relative z-10">
-        <motion.div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm rounded-full text-purple-300 font-medium mb-6 border border-white/20">
-          <Sparkles className="w-4 h-4" />
-          Digital Knowledge Vault
-        </motion.div>
-        <motion.h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6">
-          Resources Hub
+      <motion.section
+        className="px-6 pt-28 pb-12 text-center relative z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
+          Resource Hub
         </motion.h1>
-        <motion.p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Curated collection of premium resources, tutorials, and guides from the YFE community.
+        <motion.p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          A carefully curated library of resources, tutorials, and tools designed to help you learn, build, and grow.
         </motion.p>
       </motion.section>
 
       {/* Controls */}
-      <motion.section className="px-6 pb-12 relative z-10">
+      <motion.section className="px-6 pb-10 relative z-10">
         <div className="max-w-7xl mx-auto bg-white/5 dark:bg-gray-800/40 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/10">
           {/* Search & View */}
           <div className="flex flex-col lg:flex-row gap-4 mb-6">
@@ -146,7 +128,7 @@ const Resources = () => {
                 placeholder="Search resources..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-white/10 dark:bg-gray-700/40 border border-white/20 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white"
+                className="w-full pl-12 pr-4 py-3 bg-white/10 dark:bg-gray-700/40 border border-white/20 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
               />
               {searchQuery && (
                 <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors">
@@ -189,7 +171,7 @@ const Resources = () => {
         </div>
       </motion.section>
 
-      {/* Resources Grid */}
+      {/* Resource Cards */}
       <motion.section className="px-6 pb-20 relative z-10" variants={containerVariants} initial="hidden" animate="visible">
         <div className="max-w-7xl mx-auto">
           {filteredResources.length === 0 ? (
@@ -198,26 +180,50 @@ const Resources = () => {
                 <File className="w-10 h-10 text-gray-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-300 mb-2">No resources found</h3>
-              <p className="text-gray-400">Try adjusting your search or filter criteria</p>
+              <p className="text-gray-400">Try adjusting your search or filter criteria.</p>
             </motion.div>
           ) : (
-            <div className={viewMode==='grid'?"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6":"grid grid-cols-1 gap-4"}>
+            <div className={viewMode==='grid'?"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6":"grid grid-cols-1 gap-4"}>
               <AnimatePresence>
                 {filteredResources.map(resource => {
                   const FileIcon = getFileIcon(resource.type);
                   return (
-                    <motion.div key={resource.id} variants={itemVariants} layout className={`group relative bg-white/5 dark:bg-gray-800/40 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/10 hover:shadow-2xl transition-all duration-300`} whileHover={{ y: -5, scale: viewMode==='grid'?1.02:1 }}>
-                      <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10" />
+                    <motion.div
+                      key={resource.id}
+                      variants={itemVariants}
+                      layout
+                      className="group relative bg-white/5 dark:bg-gray-800/40 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/10 hover:shadow-2xl transition-all duration-300"
+                      whileHover={{ y: -5, scale: viewMode==='grid'?1.02:1 }}
+                    >
+                      {/* Image Preview */}
+                      {resource.type === 'image' && resource.thumbnail && (
+                        <img
+                          src={resource.thumbnail}
+                          alt={resource.title}
+                          className="w-full h-48 object-cover rounded-xl mb-4 border border-white/10"
+                        />
+                      )}
+
                       <div className={`w-12 h-12 bg-gradient-to-r ${getTypeColor(resource.type)} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
                         <FileIcon className="w-6 h-6 text-white" />
                       </div>
+
                       <h3 className="font-bold text-white mb-2 line-clamp-2 leading-tight">{resource.title}</h3>
-                      {resource.description && <p className="text-gray-300 text-sm mb-4 line-clamp-2 leading-relaxed">{resource.description}</p>}
+                      {resource.description && (
+                        <p className="text-gray-300 text-sm mb-4 line-clamp-2 leading-relaxed">{resource.description}</p>
+                      )}
                       <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
                         {resource.size && <span>{resource.size}</span>}
                         <span>{formatDate(resource.date)}</span>
                       </div>
-                      <motion.a href={resource.link} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <motion.a
+                        href={resource.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
                         <ExternalLink className="w-4 h-4" />
                         Open Resource
                       </motion.a>
