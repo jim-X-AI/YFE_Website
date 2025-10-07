@@ -1,48 +1,42 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ExternalLink, Moon, Sun, Sparkles } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Resource Hub', href: '/resources' },
+    { name: "Home", href: "/" },
+    { name: "Resource Hub", href: "/resources" },
+    { name: "About", href: "/about" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId) => {
-    if (sectionId.startsWith('/')) {
+    if (sectionId.startsWith("/")) {
       navigate(sectionId);
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
         setIsOpen(false);
       }
     }
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
-  };
-
   const joinCommunity = () => {
-    window.open('https://forms.gle/w6Bnr1sj5ypsA5je9', '_blank');
+    window.open("https://forms.gle/w6Bnr1sj5ypsA5je9", "_blank");
   };
 
   const DesktopNavItem = ({ item }) => (
@@ -55,8 +49,8 @@ const Navbar = () => {
       <span
         className={`relative z-10 ${
           activeSection === item.href
-            ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold'
-            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold"
+            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
         }`}
       >
         {item.name}
@@ -84,30 +78,27 @@ const Navbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/20 shadow-2xl'
-            : 'bg-transparent'
+            ? "bg-white/60 dark:bg-gray-900/60 backdrop-blur-2xl border-b border-white/20 dark:border-gray-700/20 shadow-2xl"
+            : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.div
               className="flex items-center space-x-3 cursor-pointer"
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur opacity-30 animate-pulse" />
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg backdrop-blur-lg bg-white/40">
+                <span className="text-white text-lg font-bold">YFE</span>
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Visionary
+                Your Favorite Engineer
               </span>
             </motion.div>
 
@@ -120,24 +111,10 @@ const Navbar = () => {
 
             {/* Actions */}
             <div className="flex items-center space-x-4">
-              {/* Dark Mode */}
-              <motion.button
-                onClick={toggleDarkMode}
-                className="p-2 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/20"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {darkMode ? (
-                  <Sun className="w-5 h-5 text-yellow-500" />
-                ) : (
-                  <Moon className="w-5 h-5 text-gray-600" />
-                )}
-              </motion.button>
-
               {/* Join Community */}
               <motion.button
                 onClick={joinCommunity}
-                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-xl bg-opacity-70"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -148,14 +125,14 @@ const Navbar = () => {
               {/* Mobile Menu */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/20"
+                className="md:hidden p-2 rounded-lg bg-white/40 dark:bg-gray-800/40 backdrop-blur-2xl border border-white/20 dark:border-gray-700/20 shadow-lg"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
                 {isOpen ? (
-                  <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                  <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                 ) : (
-                  <Menu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                  <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                 )}
               </motion.button>
             </div>
@@ -168,18 +145,18 @@ const Navbar = () => {
         {isOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-lg md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 z-50 w-80 h-full bg-gradient-to-br from-gray-900 to-purple-900 md:hidden"
-              initial={{ x: '100%' }}
+              className="fixed top-0 right-0 z-50 w-80 h-full bg-gradient-to-br from-blue-900 to-purple-900 md:hidden shadow-2xl"
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
             >
               <div className="flex flex-col h-full pt-20 pb-8 px-6">
                 <motion.button

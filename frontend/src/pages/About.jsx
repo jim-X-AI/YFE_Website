@@ -98,7 +98,6 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm rounded-full text-purple-300 font-medium mb-8 border border-white/20"
           >
-            <Sparkles className="w-4 h-4" />
             <span>The Origin Story</span>
           </motion.div>
 
