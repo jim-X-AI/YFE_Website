@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import {
-  MessageCircle,
   Users,
   Cpu,
   Code,
@@ -10,38 +9,28 @@ import {
   Shield,
   Car,
   Factory,
-  Sparkles,
-  ArrowRight,
-  Heart
+  Heart,
+  ArrowRight
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const About = () => {
-  const heroRef = useRef(null);
   const timelineRef = useRef(null);
   const visionRef = useRef(null);
   const invitationRef = useRef(null);
 
-  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
   const timelineInView = useInView(timelineRef, { once: true, amount: 0.2 });
   const visionInView = useInView(visionRef, { once: true, amount: 0.3 });
   const invitationInView = useInView(invitationRef, { once: true, amount: 0.3 });
 
   const timelineData = [
     {
-      icon: MessageCircle,
+      icon: Users,
       title: "The Beginning",
       description: "YFE started as a WhatsApp channel - a simple space to share passion for hardware engineering",
       year: "2023",
       color: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: Users,
-      title: "The Search",
-      description: "We searched everywhere for like-minded engineers, reaching out across platforms to build connections",
-      year: "2023",
-      color: "from-purple-500 to-pink-500"
     },
     {
       icon: Cpu,
@@ -58,7 +47,7 @@ const About = () => {
       color: "from-orange-500 to-red-500"
     },
     {
-      icon: Sparkles,
+      icon: Factory,
       title: "Multi-Domain Growth",
       description: "Expanded to include all engineering domains, creating a comprehensive tech community",
       year: "Present",
@@ -77,7 +66,10 @@ const About = () => {
   ];
 
   const joinCommunity = () => {
-    window.open('https://chat.whatsapp.com/yfe-community', '_blank');
+    window.open(
+      'https://docs.google.com/forms/d/e/1FAIpQLScuNV2sBKaday_BbaJDn2W_X1SFGub2CoPizzfCUt8QXJjnKQ/viewform',
+      '_blank'
+    );
   };
 
   return (
@@ -90,21 +82,12 @@ const About = () => {
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[160px] animate-pulse delay-1000" />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center px-6">
+      <section className="relative min-h-[70vh] flex items-center justify-center px-6 pt-20 md:pt-28">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm rounded-full text-purple-300 font-medium mb-8 border border-white/20"
-          >
-            <span>The Origin Story</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="text-6xl md:text-8xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-8"
           >
             Our Story
@@ -112,8 +95,8 @@ const About = () => {
 
           <motion.p
             initial={{ opacity: 0, y: 40 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
           >
             From a simple WhatsApp channel to a thriving community of passionate engineers.
