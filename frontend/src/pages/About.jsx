@@ -29,21 +29,21 @@ const About = () => {
       icon: Users,
       title: "The Beginning",
       description: "YFE started as a WhatsApp channel - a simple space to share passion for hardware engineering",
-      year: "2023",
+      year: "March-2025",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Cpu,
       title: "Tuesday Chats Born",
       description: "Weekly deep-dives into embedded systems and hardware discussions became our signature event",
-      year: "2024",
+      year: "April-2025",
       color: "from-green-500 to-teal-500"
     },
     {
       icon: Code,
       title: "Community Expansion",
       description: "We evolved into a full WhatsApp community, making interactions more engaging and inclusive",
-      year: "2024",
+      year: "April-2025",
       color: "from-orange-500 to-red-500"
     },
     {

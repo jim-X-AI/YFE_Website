@@ -10,7 +10,6 @@ export default function LoadingSpinner() {
         {/* Loading text */}
         <div className="mt-8 text-center px-4 sm:px-0">
           <p className="text-base sm:text-lg font-medium text-purple-600 dark:text-purple-400 mb-2 flex items-center justify-center gap-2">
-            <Sparkles className="w-5 h-5 animate-pulse" />
             Loading YFE Interface
           </p>
         </div>
