@@ -20,7 +20,7 @@ export default function FridayBanters() {
   const description =
     content?.friday?.description ||
     'Wind down the week with casual conversations, networking, and idea sharing.';
-  const meetLink = content?.friday?.meet_link || 'https://meet.google.com/example';
+  const meetLink = content?.friday?.meet_link || 'https://meet.google.com/spw-udtm-oiq';
 
   // Add to Google Calendar directly (no file download)
   const handleJoinClick = () => {
