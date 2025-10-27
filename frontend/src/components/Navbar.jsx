@@ -118,7 +118,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Join Community</span>
+                <span>Join YFE </span>
                 <ExternalLink className="w-4 h-4" />
               </motion.button>
 

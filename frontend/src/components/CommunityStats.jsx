@@ -42,7 +42,7 @@ export default function CommunityStats() {
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           <StatCard
             icon={<Users className="w-6 h-6 text-white" />}
-            value="150+"
+            value="350+"
             label="Members"
             delay={0.2}
           />
@@ -76,6 +76,14 @@ export default function CommunityStats() {
             label="Automobiles"
             delay={0.7}
             />
+          <StatCard
+            icon={<Car className="w-6 h-6 text-white"/>} // Icon for DataScience
+            value="DataScience"
+            label="ML"
+            delay={0.8}
+            />
+{/*           <StatCard */}
+{/*             icon={<} */}
 
         </div>
       </div>
