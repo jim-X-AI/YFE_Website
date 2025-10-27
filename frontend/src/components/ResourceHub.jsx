@@ -1,11 +1,12 @@
-import { FolderOpen, ExternalLink } from 'lucide-react';
+import { FolderOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useContent } from '../context/ContentContext'; // ✅ adjust path if necessary
+import { useNavigate } from 'react-router-dom';
+import { useContent } from '../context/ContentContext';
 
 export default function ResourceHub() {
   const { content } = useContent();
+  const navigate = useNavigate();
 
-  const driveLink = content?.resources?.drive_link || '#';
   const description =
     content?.resources?.description ||
     'Access our growing library of templates, guides, and tools to accelerate your projects. Everything from pitch decks to technical white papers.';
@@ -20,28 +21,32 @@ export default function ResourceHub() {
           viewport={{ once: true }}
           className="relative"
         >
+          {/* Gradient glow */}
           <div className="absolute -inset-8 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 dark:from-purple-900 dark:via-pink-900 dark:to-purple-950 rounded-3xl blur opacity-20" />
+
           <div className="relative bg-white/80 dark:bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-white/30 dark:border-white/10">
             <div className="flex flex-col items-center text-center">
               <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-full mb-6">
                 <FolderOpen className="w-8 h-8 text-blue-600 dark:text-blue-300" />
               </div>
+
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
                 Resource Hub
               </h2>
+
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-2xl">
                 {description}
               </p>
-              <a
-                href={driveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+
+              <motion.button
+                onClick={() => navigate('/resources')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
               >
                 <FolderOpen className="w-5 h-5" />
                 Explore Resources
-                <ExternalLink className="w-4 h-4" />
-              </a>
+              </motion.button>
             </div>
           </div>
         </motion.div>
