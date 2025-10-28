@@ -14,7 +14,7 @@ export default function Footer() {
           className="flex flex-col items-center text-center mb-12"
         >
           <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-            Your Favourite Engineer Community
+            Your Favourite Engineer
           </h3>
 
           <p className="text-gray-300 max-w-2xl mb-8 leading-relaxed">
@@ -58,7 +58,7 @@ export default function Footer() {
         >
           <p>
             © {new Date().getFullYear()}{" "}
-            <span className="text-white font-medium">YFE Community</span>. All rights reserved.
+            <span className="text-white font-medium">Your Favourite Engineer</span>. All rights reserved.
           </p>
         </motion.div>
       </div>

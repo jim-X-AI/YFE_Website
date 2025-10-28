@@ -6,6 +6,7 @@ import Footer from './src/components/Footer';
 import LoadingSpinner from './src/components/LoadingSpinner';
 import ErrorMessage from './src/components/ErrorMessage';
 
+
 // Home page sections
 import Hero from './src/components/Hero';
 import Vision from './src/components/Vision';
@@ -18,6 +19,7 @@ import FeaturedMembers from './src/components/FeaturedMembers';
 // Lazy-loaded pages
 const About = lazy(() => import('./src/pages/About'));
 const Resources = lazy(() => import('./src/pages/Resources'));
+const ExecutiveLeadership = lazy(() => import('./src/pages/ExecutiveLeadership'))
 
 // Home Page Component
 function HomePage() {
@@ -59,6 +61,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<About />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/executives" element={<ExecutiveLeadership />} />
               <Route
                 path="*"
                 element={

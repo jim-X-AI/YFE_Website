@@ -42,7 +42,7 @@ export default function Vision() {
               </p>
               <div className="mt-6">
                 <FuturisticButton className="text-sm">
-                  Meet Our Members
+                  Meet Our Executives
                 </FuturisticButton>
               </div>
             </div>
