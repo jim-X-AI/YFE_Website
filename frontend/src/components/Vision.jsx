@@ -1,8 +1,11 @@
 import { Users, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import FuturisticButton from './FuturisticButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function Vision() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-black dark:to-gray-900 transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
@@ -41,7 +44,10 @@ export default function Vision() {
                 essential skills, gaining the expertise and confidence to thrive in their careers and capitalize on global opportunities.
               </p>
               <div className="mt-6">
-                <FuturisticButton className="text-sm">
+                <FuturisticButton
+                  className="text-sm"
+                  onClick={() => navigate('/executives')}
+                >
                   Meet Our Executives
                 </FuturisticButton>
               </div>
