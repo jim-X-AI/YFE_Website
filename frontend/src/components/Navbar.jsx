@@ -12,16 +12,12 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Resource Hub", href: "/resources" },
-    { name: "Executives", href: "/executives"},
-
+    { name: "Executives", href: "/executives" },
     { name: "About", href: "/about" },
-
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -38,9 +34,8 @@ const Navbar = () => {
     }
   };
 
-  const joinCommunity = () => {
+  const joinCommunity = () =>
     window.open("https://forms.gle/w6Bnr1sj5ypsA5je9", "_blank");
-  };
 
   const DesktopNavItem = ({ item }) => (
     <motion.button
@@ -92,15 +87,17 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.div
-              className="flex items-center space-x-3 cursor-pointer"
+              className="flex items-center space-x-2 cursor-pointer"
               onClick={() => navigate("/")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg backdrop-blur-lg bg-white/40">
-                <span className="text-white text-lg font-bold">YFE</span>
-              </div>
-              <span className="white">
+              <img
+                src="/apple-touch-icon.png"
+                alt="YFE Logo"
+                className="w-10 h-10 object-contain rounded-lg drop-shadow-md bg-white/70 dark:bg-transparent p-1"
+              />
+              <span className="font-semibold text-gray-800 dark:text-white tracking-tight">
                 Your Favorite Engineer
               </span>
             </motion.div>
@@ -121,7 +118,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Join YFE </span>
+                <span>Join YFE</span>
                 <ExternalLink className="w-4 h-4" />
               </motion.button>
 
