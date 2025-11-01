@@ -40,15 +40,15 @@ const Navbar = () => {
   const DesktopNavItem = ({ item }) => (
     <motion.button
       onClick={() => scrollToSection(item.href)}
-      className="relative px-4 py-2 text-sm font-medium transition-all duration-300"
+      className="relative px-4 py-2 text-sm font-medium text-white transition-all duration-300"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
       <span
         className={`relative z-10 ${
           activeSection === item.href
-            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold"
-            : "text-white hover:text-blue-300"
+            ? "font-semibold text-white"
+            : "hover:text-blue-300"
         }`}
       >
         {item.name}
@@ -76,8 +76,8 @@ const Navbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[rgba(0,0,0,0.4)] backdrop-blur-xl border-b border-white/10 shadow-lg"
-            : "bg-[rgba(0,0,0,0.25)] backdrop-blur-md"
+            ? "bg-black/40 backdrop-blur-xl border-b border-white/10 shadow-lg"
+            : "bg-black/25 backdrop-blur-md"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -114,12 +114,12 @@ const Navbar = () => {
               {/* Join Community */}
               <motion.button
                 onClick={joinCommunity}
-                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-xl"
+                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-purple-600 via-blue-600 to-pink-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span>Join YFE</span>
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 text-white" />
               </motion.button>
 
               {/* Mobile Menu */}
@@ -152,7 +152,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 z-50 w-80 h-full bg-[rgba(0,0,0,0.85)] backdrop-blur-xl md:hidden shadow-2xl"
+              className="fixed top-0 right-0 z-50 w-80 h-full bg-black/90 backdrop-blur-xl md:hidden shadow-2xl"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -174,12 +174,12 @@ const Navbar = () => {
                 </div>
                 <motion.button
                   onClick={joinCommunity}
-                  className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold shadow-2xl flex items-center justify-center space-x-2 mt-8"
+                  className="w-full py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-pink-600 text-white rounded-xl font-semibold shadow-2xl flex items-center justify-center space-x-2 mt-8"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <span>Join YFE</span>
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className="w-5 h-5 text-white" />
                 </motion.button>
               </div>
             </motion.div>

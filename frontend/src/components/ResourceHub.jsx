@@ -1,45 +1,32 @@
-import { FolderOpen } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { useContent } from '../context/ContentContext';
+import { FolderOpen, FileText, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useContent } from "../context/ContentContext";
 
 export default function ResourceHub() {
   const { content } = useContent();
   const navigate = useNavigate();
 
+  // ✅ Condensed, clearer copy — same meaning, less wordy
   const description =
     content?.resources?.description ||
-    'Access our growing library of templates, guides, and tools to accelerate your projects. Everything from pitch decks to technical white papers.';
+    "Explore our curated library of templates, guides, and tools to help you build faster and smarter.";
 
   return (
-    <section className="relative py-20 px-6 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-300 overflow-hidden">
-      {/* === Background Imagery === */}
-      <motion.img
-        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80"
-        alt="Team collaboration"
-        className="absolute top-0 left-0 w-1/2 h-full object-cover object-left opacity-10 dark:opacity-15 rounded-r-[40px] pointer-events-none"
-        initial={{ opacity: 0, scale: 1.05 }}
-        whileInView={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.2 }}
-      />
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
-        alt="Creative workspace"
-        className="absolute bottom-0 right-0 w-1/2 h-full object-cover object-right opacity-10 dark:opacity-15 rounded-l-[40px] pointer-events-none"
-        initial={{ opacity: 0, scale: 1.05 }}
-        whileInView={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
-      />
-
-      {/* === Animated Orb === */}
+    <section className="relative py-20 px-6 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden transition-colors duration-300">
+      {/* === Floating Gradient Orbs (kept but softened for elegance) === */}
       <motion.div
-        className="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 rounded-full blur-3xl opacity-25 dark:opacity-10"
-        animate={{ y: [0, 30, 0] }}
-        transition={{ repeat: Infinity, duration: 8 }}
+        className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full blur-[120px] opacity-15"
+        animate={{ y: [0, 30, 0], opacity: [0.12, 0.22, 0.12] }}
+        transition={{ repeat: Infinity, duration: 10 }}
+      />
+      <motion.div
+        className="absolute -bottom-32 -right-32 w-96 h-96 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[120px] opacity-10"
+        animate={{ y: [0, -30, 0], opacity: [0.1, 0.2, 0.1] }}
+        transition={{ repeat: Infinity, duration: 12, delay: 1 }}
       />
 
-      {/* === Subtle Gradient Wave === */}
+      {/* === Subtle Wave Glow for depth === */}
       <motion.svg
         viewBox="0 0 1440 320"
         className="absolute bottom-0 left-0 w-full opacity-10 pointer-events-none"
@@ -69,31 +56,43 @@ export default function ResourceHub() {
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Glow Outline */}
-          <div className="absolute -inset-8 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 dark:from-purple-900 dark:via-pink-900 dark:to-purple-950 rounded-3xl blur opacity-20" />
+          {/* === Glow Outline === */}
+          <div className="absolute -inset-8 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 rounded-3xl blur opacity-15" />
 
-          {/* Card */}
-          <div className="relative bg-white/80 dark:bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-white/30 dark:border-white/10">
-            <div className="flex flex-col items-center text-center">
-              <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-full mb-6 shadow-md">
-                <FolderOpen className="w-8 h-8 text-blue-600 dark:text-blue-300" />
+          {/* === Frosted Card === */}
+          <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl text-center">
+            <div className="flex flex-col items-center">
+              {/* === Icon Enhancement: subtle sparkle for motion energy === */}
+              <div className="relative mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full blur-md opacity-40" />
+                <div className="p-4 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full shadow-lg relative z-10">
+                  <FolderOpen className="w-8 h-8 text-white" />
+                </div>
+                {/* Decorative accent icon (adds sophistication) */}
+                <Sparkles className="absolute -top-3 -right-3 w-5 h-5 text-pink-400 animate-pulse opacity-80" />
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+              {/* === Title === */}
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
                 Resource Hub
               </h2>
 
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-2xl">
+              {/* === Divider (visual rhythm improvement) === */}
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 rounded-full mb-6 opacity-60" />
+
+              {/* === Description (condensed, elegant) === */}
+              <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl">
                 {description}
               </p>
 
+              {/* === CTA Button === */}
               <motion.button
-                onClick={() => navigate('/resources')}
+                onClick={() => navigate("/resources")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-full font-medium hover:shadow-[0_0_25px_rgba(147,51,234,0.3)] transition-all duration-300"
               >
-                <FolderOpen className="w-5 h-5" />
+                <FileText className="w-5 h-5" />
                 Explore Resources
               </motion.button>
             </div>
