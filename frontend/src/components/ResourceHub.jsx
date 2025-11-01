@@ -69,7 +69,7 @@ export default function ResourceHub() {
                   <FolderOpen className="w-8 h-8 text-white" />
                 </div>
                 {/* Decorative accent icon (adds sophistication) */}
-                <Sparkles className="absolute -top-3 -right-3 w-5 h-5 text-pink-400 animate-pulse opacity-80" />
+{/*                 <Sparkles className="absolute -top-3 -right-3 w-5 h-5 text-pink-400 animate-pulse opacity-80" /> */}
               </div>
 
               {/* === Title === */}

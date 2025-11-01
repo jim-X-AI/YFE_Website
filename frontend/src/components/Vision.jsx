@@ -32,7 +32,7 @@ export default function Vision() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto rounded-full" />
           <p className="text-gray-300 max-w-2xl mx-auto mt-6 text-lg leading-relaxed">
-            Empowering Africa’s next generation of creators — blending innovation, leadership, and purpose to shape the digital future.
+            Empowering Africa’s next generation of creators blending innovation, leadership, and purpose to shape the digital future.
           </p>
         </motion.div>
 
@@ -60,7 +60,7 @@ export default function Vision() {
 
                 {/* Shortened + more engaging copy */}
                 <p className="text-gray-300 leading-relaxed">
-                  We’re building an ecosystem where young innovators connect, learn, and grow — turning collaboration into global opportunity.
+                  We’re building an ecosystem where young innovators connect, learn, and grow turning collaboration into global opportunity.
                 </p>
               </div>
 
@@ -88,15 +88,15 @@ export default function Vision() {
             <div className="relative bg-gray-800/40 backdrop-blur-lg border border-purple-400/20 rounded-2xl p-8 shadow-2xl h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full border border-purple-400/30">
-                    <Sparkles className="w-6 h-6 text-purple-300" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Future-Focused</h3>
+{/*                   <div className="p-3 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full border border-purple-400/30"> */}
+{/*                     <Sparkles className="w-6 h-6 text-purple-300" /> */}
+{/*                   </div> */}
+                  <h3 className="text-2xl font-bold text-white">Future Focused</h3>
                 </div>
 
                 {/* Shortened and elevated tone */}
                 <p className="text-gray-300 leading-relaxed">
-                  We equip bold minds to build next-gen solutions — bridging Africa’s creativity with the world’s digital frontier.
+                  We equip bold minds to build next-gen solutions bridging Africa’s creativity with the world’s digital frontier.
                 </p>
               </div>
 

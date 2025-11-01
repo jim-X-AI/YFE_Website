@@ -32,28 +32,28 @@ const About = () => {
     {
       icon: Users,
       title: "The Beginning",
-      description: "A humble WhatsApp channel where hardware minds met and shared ideas.",
+      description: "YFE started as a WhatsApp channel a simple space to share passion for hardware engineering.",
       year: "March 2025",
       color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Cpu,
       title: "Tuesday Chats",
-      description: "Weekly deep-dives into embedded systems became our signature space.",
+      description: "Weekly deep-dives into embedded systems and hardware discussions became our signature space.",
       year: "April 2025",
       color: "from-green-500 to-teal-500",
     },
     {
       icon: Code,
       title: "Community Expansion",
-      description: "We grew into a full community—more voices, more collaboration.",
+      description: "We evolved into a full whatsApp community making interactions more engaging and inclusive.",
       year: "April 2025",
       color: "from-orange-500 to-red-500",
     },
     {
       icon: Factory,
       title: "Multi-Domain Growth",
-      description: "Now covering many engineering domains — a full-stack maker community.",
+      description: "Expanded to include all engineering domains creating a comprehensive tech community.",
       year: "Present",
       color: "from-indigo-500 to-purple-500",
     },
@@ -112,7 +112,7 @@ const About = () => {
             Our Story
           </motion.h1>
           <motion.p {...fadeInUp(0.15)} className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
-            From a WhatsApp spark to a thriving, multi-domain engineering community. We build, learn, and ship—together.
+            From a simple WhatsApp channel to a thriving community of passionate engineers. This is the story of Your Favorite Engineer.
           </motion.p>
           <img
             src="https://undraw.co/api/illustrations/illustration?color=6C5CE7&background=0&name=tech_team"
@@ -200,7 +200,7 @@ const About = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeInUp(0.05)} className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-3">Our Domains</h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto">From ML to mechatronics — spaces to learn, build, and ship products.</p>
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto">From embedded systems to datascience, we've created a home for every type of engineer, spaces to learn, build, and ship products.</p>
           </motion.div>
 
           <div className="mb-6 md:mb-10 rounded-xl overflow-hidden">
@@ -256,10 +256,10 @@ const About = () => {
             <div className="relative text-center">
               <Heart className="w-8 h-8 sm:w-10 sm:h-10 text-red-500 mx-auto mb-4" />
               <motion.h3 {...fadeInUp(0.05)} className="text-xl sm:text-2xl md:text-3xl font-semibold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-3 leading-tight">
-                "We don't wait for magic — we make it."
+                "We believe you don't wait for magic. You make it happen."
               </motion.h3>
               <motion.p {...fadeInUp(0.1)} className="text-sm sm:text-base md:text-lg text-gray-300 italic max-w-3xl mx-auto">
-                Built to solve what didn't exist — together.
+                This philosophy drove us to build what couldn't be found.
               </motion.p>
 
               <img
@@ -281,7 +281,7 @@ const About = () => {
             Join the Movement
           </motion.h2>
           <motion.p {...fadeInUp(0.12)} className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
-            Join YFE — collaborate with makers, learn with experts, and ship projects.
+            Be part of YFE's growing story. Connect with passionate engineers share knowledge and build the future together.
           </motion.p>
 
           <motion.button
