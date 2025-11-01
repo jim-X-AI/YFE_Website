@@ -1,4 +1,15 @@
-import { Users, Cpu, Atom, Brain, Code2, Palette, Car, Shield, Gamepad2 } from "lucide-react";
+import {
+  Users,
+  Cpu,
+  Atom,
+  Brain,
+  Code2,
+  Palette,
+  Car,
+  Shield,
+  Gamepad2,
+  Factory, // 🏭 New icon for Industrial Automation
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const StatCard = ({ icon, value, label, delay, onClick }) => (
@@ -29,6 +40,7 @@ export default function CommunityStats() {
   const domains = [
     { icon: <Cpu className="w-6 h-6 text-white" />, value: "AI/ML", label: "Machine Learning & AI" },
     { icon: <Atom className="w-6 h-6 text-white" />, value: "Robotics", label: "Embedded Systems & Robotics" },
+    { icon: <Factory className="w-6 h-6 text-white" />, value: "IndAuto", label: "Industrial Automation" }, // ✅ Added domain
     { icon: <Code2 className="w-6 h-6 text-white" />, value: "Dev", label: "Software Development" },
     { icon: <Shield className="w-6 h-6 text-white" />, value: "Cyber", label: "Cybersecurity" },
     { icon: <Brain className="w-6 h-6 text-white" />, value: "Data", label: "Data Science" },
