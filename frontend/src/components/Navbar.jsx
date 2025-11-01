@@ -48,7 +48,7 @@ const Navbar = () => {
         className={`relative z-10 ${
           activeSection === item.href
             ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold"
-            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            : "text-white hover:text-blue-300"
         }`}
       >
         {item.name}
@@ -59,14 +59,14 @@ const Navbar = () => {
   const MobileNavItem = ({ item, index }) => (
     <motion.button
       onClick={() => scrollToSection(item.href)}
-      className="relative py-4 text-xl font-medium text-center w-full"
+      className="relative py-4 text-xl font-medium text-center w-full text-white"
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <span className="relative z-10 text-white">{item.name}</span>
+      {item.name}
     </motion.button>
   );
 
@@ -76,8 +76,8 @@ const Navbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/60 dark:bg-gray-900/60 backdrop-blur-2xl border-b border-white/20 dark:border-gray-700/20 shadow-2xl"
-            : "bg-transparent"
+            ? "bg-[rgba(0,0,0,0.4)] backdrop-blur-xl border-b border-white/10 shadow-lg"
+            : "bg-[rgba(0,0,0,0.25)] backdrop-blur-md"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -95,9 +95,9 @@ const Navbar = () => {
               <img
                 src="/apple-touch-icon.png"
                 alt="YFE Logo"
-                className="w-10 h-10 object-contain rounded-lg drop-shadow-md bg-white/70 dark:bg-transparent p-1"
+                className="w-10 h-10 object-contain rounded-lg drop-shadow-md bg-white/20 p-1"
               />
-              <span className="font-semibold text-gray-800 dark:text-white tracking-tight">
+              <span className="font-semibold text-white tracking-tight">
                 Your Favorite Engineer
               </span>
             </motion.div>
@@ -114,7 +114,7 @@ const Navbar = () => {
               {/* Join Community */}
               <motion.button
                 onClick={joinCommunity}
-                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-xl bg-opacity-70"
+                className="hidden md:flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -125,14 +125,14 @@ const Navbar = () => {
               {/* Mobile Menu */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-lg bg-white/40 dark:bg-gray-800/40 backdrop-blur-2xl border border-white/20 dark:border-gray-700/20 shadow-lg"
+                className="md:hidden p-2 rounded-lg bg-white/10 border border-white/20 backdrop-blur-md shadow-lg"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
                 {isOpen ? (
-                  <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  <X className="w-6 h-6 text-white" />
                 ) : (
-                  <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  <Menu className="w-6 h-6 text-white" />
                 )}
               </motion.button>
             </div>
@@ -145,14 +145,14 @@ const Navbar = () => {
         {isOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-lg md:hidden"
+              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-lg md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 z-50 w-80 h-full bg-gradient-to-br from-blue-900 to-purple-900 md:hidden shadow-2xl"
+              className="fixed top-0 right-0 z-50 w-80 h-full bg-[rgba(0,0,0,0.85)] backdrop-blur-xl md:hidden shadow-2xl"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
