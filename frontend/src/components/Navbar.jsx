@@ -98,7 +98,7 @@ const Navbar = () => {
                 className="w-10 h-10 object-contain rounded-lg drop-shadow-md bg-white/20 p-1"
               />
               <span className="font-semibold text-white tracking-tight">
-                Your Favorite Engineer
+                Your Favourite Engineer
               </span>
             </motion.div>
 
@@ -118,7 +118,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Join YFE</span>
+                <span>Join Community</span>
                 <ExternalLink className="w-4 h-4 text-white" />
               </motion.button>
 
