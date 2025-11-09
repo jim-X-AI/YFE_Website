@@ -50,7 +50,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="px-7 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transition-all duration-300 group w-full sm:w-auto text-center"
           >
-            Join YFE
+            Join Our Community
             <ArrowRight className="w-5 h-5 ml-2 inline opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
           </a>
 

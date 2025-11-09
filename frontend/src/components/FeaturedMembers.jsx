@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const founder = {
   name: "Princess Ayomide Bamigboye",
-  role: "Founder & Co-Head, Embedded Systems & Robotics",
+  role: "Founder",
   avatar: "https://i.ibb.co/F4cVyfyH/img3.jpg",
   company: "YFE",
   profileLink: "https://www.linkedin.com/in/princess-bamigboye",
