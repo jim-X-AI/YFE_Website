@@ -112,7 +112,7 @@ const About = () => {
             Our Story
           </motion.h1>
           <motion.p {...fadeInUp(0.15)} className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
-            From a simple WhatsApp channel to a thriving community of passionate engineers. This is the story of Your Favorite Engineer.
+            From a simple WhatsApp channel to a thriving community of passionate engineers. This is the story of Your Favourite Engineer.
           </motion.p>
           <img
             src="https://undraw.co/api/illustrations/illustration?color=6C5CE7&background=0&name=tech_team"
